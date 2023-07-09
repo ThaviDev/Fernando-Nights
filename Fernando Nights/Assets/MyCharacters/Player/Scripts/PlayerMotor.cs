@@ -19,6 +19,9 @@ public class PlayerMotor : MonoBehaviour
     [SerializeField]
     private IntSCOB keysAmount;
 
+    [SerializeField]
+    private GameObject triggerInput;
+
 
     void Start()
     {
@@ -26,6 +29,17 @@ public class PlayerMotor : MonoBehaviour
         keysAmount.Value = 0;
         anim = this.gameObject.transform.Find("Player visual").gameObject.GetComponent<Animator>();
         sprite = this.gameObject.transform.Find("Player visual").gameObject.GetComponent<SpriteRenderer>();
+        triggerInput = this.gameObject.transform.Find("Trigger Input").gameObject;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space)){
+            triggerInput.SetActive(true);
+        }
+        if (Input.GetKeyUp(KeyCode.Space)){
+            triggerInput.SetActive(false);
+        }
     }
 
     void FixedUpdate()
