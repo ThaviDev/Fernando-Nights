@@ -65,9 +65,4 @@ public class Doors : MonoBehaviour
             isOpen = 1f;
         }
     }
-
-    private void OnCollisionEnter2D(Collision2D col)
-    {
-
-    }
 }

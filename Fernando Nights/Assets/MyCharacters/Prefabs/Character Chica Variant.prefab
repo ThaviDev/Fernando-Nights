@@ -15,6 +15,14 @@ PrefabInstance:
       propertyPath: canAnimate
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1239376642951604923, guid: f3259b733984da8468d977e89a74bbff, type: 3}
+      propertyPath: remnantRequired
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1239376642951604923, guid: f3259b733984da8468d977e89a74bbff, type: 3}
+      propertyPath: positions.Array.size
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1239376642951604926, guid: f3259b733984da8468d977e89a74bbff, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -61,7 +69,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1239376642951605057, guid: f3259b733984da8468d977e89a74bbff, type: 3}
       propertyPath: m_Name
-      value: Character Chica Variant
+      value: Character Chica
       objectReference: {fileID: 0}
     - target: {fileID: 1239376642951605057, guid: f3259b733984da8468d977e89a74bbff, type: 3}
       propertyPath: m_IsActive
