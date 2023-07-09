@@ -1,39 +1,23 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &5791370394535454633
+--- !u!1001 &749916775872583670
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1239376642951604923, guid: f3259b733984da8468d977e89a74bbff, type: 3}
-      propertyPath: ID
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1239376642951604923, guid: f3259b733984da8468d977e89a74bbff, type: 3}
-      propertyPath: canAnimate
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1239376642951604923, guid: f3259b733984da8468d977e89a74bbff, type: 3}
-      propertyPath: remnantRequired
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 1239376642951604923, guid: f3259b733984da8468d977e89a74bbff, type: 3}
-      propertyPath: positions.Array.size
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 1239376642951604926, guid: f3259b733984da8468d977e89a74bbff, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1239376642951604926, guid: f3259b733984da8468d977e89a74bbff, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.05
+      value: 30.7062
       objectReference: {fileID: 0}
     - target: {fileID: 1239376642951604926, guid: f3259b733984da8468d977e89a74bbff, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 25.04
+      value: -8.365318
       objectReference: {fileID: 0}
     - target: {fileID: 1239376642951604926, guid: f3259b733984da8468d977e89a74bbff, type: 3}
       propertyPath: m_LocalPosition.z
@@ -69,23 +53,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1239376642951605057, guid: f3259b733984da8468d977e89a74bbff, type: 3}
       propertyPath: m_Name
-      value: Character Chica
-      objectReference: {fileID: 0}
-    - target: {fileID: 1239376642951605057, guid: f3259b733984da8468d977e89a74bbff, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1239376642951605059, guid: f3259b733984da8468d977e89a74bbff, type: 3}
-      propertyPath: target
-      value: 
+      value: Mangle
       objectReference: {fileID: 0}
     - target: {fileID: 1239376644010458061, guid: f3259b733984da8468d977e89a74bbff, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1500170102, guid: d58c2f79b2042cd43b569248ce4b5430, type: 3}
-    - target: {fileID: 1239376644010458066, guid: f3259b733984da8468d977e89a74bbff, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 22100000, guid: e0aa1c4732fb9884ca4c6809b715f197, type: 2}
+      objectReference: {fileID: -659262287, guid: d58c2f79b2042cd43b569248ce4b5430, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3259b733984da8468d977e89a74bbff, type: 3}

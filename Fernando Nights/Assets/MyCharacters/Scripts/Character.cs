@@ -15,8 +15,6 @@ public class Character : MonoBehaviour
     private bool isInPos; // Si el personaje esta en ese momento en la posicion deseada de las posiciones del personaje
     [SerializeField]
     private float waitTimeOG; // Tiempo que esta establecido para empezar a esperar para ir a otra posicion
-
-    [SerializeField]
     private float waitTimePos; // Tiempo que falta para que decida ir a otra posición
     [SerializeField]
     private float movementSpeedOG;

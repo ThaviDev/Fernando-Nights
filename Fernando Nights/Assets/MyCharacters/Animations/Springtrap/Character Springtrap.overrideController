@@ -6,10 +6,10 @@ AnimatorOverrideController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Character Bonnie 2
+  m_Name: Character Springtrap
   m_Controller: {fileID: 9100000, guid: 468f6b30a5d7fa14abd778b771090777, type: 2}
   m_Clips:
   - m_OriginalClip: {fileID: 7400000, guid: 3a759bc2ca43ad24f919ea3a1c417522, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 1e7d2b41c433e9b4e974b40ce8a0a6bc, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: ddfe9b5da435b614d8024cc68f768749, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: 27b8a8c33081c724da3780f0fcbc2953, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 791495c1225bb244caa591422b570dd9, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 421685651b1250445b8abe5f7be936c8, type: 2}

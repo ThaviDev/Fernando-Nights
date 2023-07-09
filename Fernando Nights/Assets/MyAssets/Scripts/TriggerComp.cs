@@ -15,7 +15,7 @@ public class TriggerComp : MonoBehaviour
         } else if (col.tag == "Character")
         {
             Character character = col.gameObject.GetComponent<Character>();
-
+            character.TriggerSpeed(valueDivider);
         }
     }
 }

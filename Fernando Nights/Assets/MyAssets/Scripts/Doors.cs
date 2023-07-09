@@ -17,6 +17,11 @@ public class Doors : MonoBehaviour
 
     [SerializeField]
     private float isOpen;
+
+    [SerializeField]
+    private int IDForAreaUnlock;
+
+
     private bool doorTriggered;
     void Start()
     {
