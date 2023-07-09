@@ -1,18 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class CanvasManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public TextTMP remnantText;
+    public TextTMP bateryText;
+    public TextTMP keysText;
+
+    [SerializeField]
+    IntSCOB remnantAmount;
+    [SerializeField]
+    IntSCOB bateryAmount;
+    [SerializeField]
+    IntSCOB keysAmount;
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        // TEMPORALMENTE EN EL UPDATE, UNA VEZ QUE SE ESTABLEZCAN LOS EVENTOS SERA PARTE DE UN EVENTO O VARIOS
+        remnantText.UpdateText("Remnant: " + remnantAmount.Value);
+        bateryText.UpdateText("Batery: " + bateryAmount.Value);
+        keysText.UpdateText("Keys: " + keysAmount.Value);
     }
 }

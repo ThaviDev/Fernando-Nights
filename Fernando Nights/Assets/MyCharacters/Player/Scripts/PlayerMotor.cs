@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerMotor : MonoBehaviour
 {
     [SerializeField]
-    private float movementSpeed;
+    private float movementSpeedOG;
+    private float presentSpeed;
     private float axisX;// El valor X del jugador
     private float axisY;// El valor Y del jugador
     //public float axisIntervention = 0.6f; // El valor de desviación para que caminar en diagonal quede bien
@@ -25,6 +26,7 @@ public class PlayerMotor : MonoBehaviour
 
     void Start()
     {
+        presentSpeed = movementSpeedOG;
         remnantAmount.Value = 0;
         keysAmount.Value = 0;
         anim = this.gameObject.transform.Find("Player visual").gameObject.GetComponent<Animator>();
@@ -50,7 +52,7 @@ public class PlayerMotor : MonoBehaviour
         Vector3 mov = new Vector3(axisX, axisY, 0f);
 
         //transform.position = Vector3.MoveTowards(transform.position, transform.position + mov, movementSpeedIG * Time.deltaTime );
-        rb.MovePosition(Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, transform.position.y) + mov, movementSpeed * Time.deltaTime));
+        rb.MovePosition(Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, transform.position.y) + mov, presentSpeed * Time.deltaTime));
 
         if (Mathf.Abs(axisX) > 0.1 || Mathf.Abs(axisY) > 0.1)
         {
@@ -71,6 +73,9 @@ public class PlayerMotor : MonoBehaviour
         {
             sprite.flipX = false;
         }
-
+    }
+    public void TriggerSpeed(int speedDivider)
+    {
+        presentSpeed = movementSpeedOG / speedDivider;
     }
 }

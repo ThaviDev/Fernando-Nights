@@ -7,12 +7,10 @@ public class UnlockAreas : MonoBehaviour
     public GameObject[] _TileAreas = new GameObject[5];
     void Start()
     {
-        /*
-        for(int i = 0; i < 5; i++)
+        for(int i = 0; i < _TileAreas.Length; i++)
         {
             _TileAreas[i].SetActive(false);
         }
-        */
     }
 
     void Update()

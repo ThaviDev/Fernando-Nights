@@ -11,6 +11,7 @@ public class Chest : MonoBehaviour
     private IntSCOB keys;
     [SerializeField]
     private int remnantAmount = 20;
+    private bool isOpen;
 
     void Start()
     {
@@ -22,8 +23,12 @@ public class Chest : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D col)
     {
-        myRenderer.sprite = Resources.Load<Sprite>("ChestOpen");
-        remnant.Value += remnantAmount;
-        keys.Value += 1;
+        if (col.gameObject.tag == "Player" && isOpen == false)
+        {
+            myRenderer.sprite = Resources.Load<Sprite>("ChestOpen");
+            remnant.Value += remnantAmount;
+            keys.Value += 1;
+            isOpen = true;
+        }
     }
 }

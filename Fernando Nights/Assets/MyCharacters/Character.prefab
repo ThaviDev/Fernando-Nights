@@ -175,6 +175,9 @@ MonoBehaviour:
   type: 1
   positions: []
   remnant: {fileID: 11400000, guid: 57f75cfd87cc7514d82dc68b3fff8767, type: 2}
+  myAIPath: {fileID: 1239376642951605058}
+  sprite: {fileID: 1239376644010458061}
+  anim: {fileID: 1239376644010458066}
 --- !u!1 &1239376644010458064
 GameObject:
   m_ObjectHideFlags: 0
