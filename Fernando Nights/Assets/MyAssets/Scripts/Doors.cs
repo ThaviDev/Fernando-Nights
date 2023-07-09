@@ -59,6 +59,7 @@ public class Doors : MonoBehaviour
                 print("Se abre la puerta");
                 keys.Value--;
                 isClosed = false;
+                FindObjectOfType<UnlockAreas>().UnlockArea(IDForAreaUnlock);
             } else
             {
                 // Mandarle informacion a UI que no se puede porque no hay llaves, puede ser por SCOB o por EVENT
