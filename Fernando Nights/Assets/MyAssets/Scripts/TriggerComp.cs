@@ -17,5 +17,12 @@ public class TriggerComp : MonoBehaviour
             Character character = col.gameObject.GetComponent<Character>();
             character.TriggerSpeed(valueDivider);
         }
+
+
+    }
+
+    private void OnTriggerExit2D(Collider2D coll)
+    {
+        
     }
 }

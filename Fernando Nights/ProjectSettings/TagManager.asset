@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Character
   - TriggerInput
+  - OfficeDoor
   layers:
   - Default
   - TransparentFX

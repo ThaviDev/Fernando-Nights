@@ -10,17 +10,10 @@ public class Doors : MonoBehaviour
     public bool isClosed;
     [SerializeField]
     private IntSCOB keys;
-    [SerializeField]
-    private int orientation; // 0 : Horizontal, 1 : Right, 2 : Left
-    [SerializeField]
-    private bool isSecurityDoor;
-
-    [SerializeField]
     private float isOpen;
 
     [SerializeField]
     private int IDForAreaUnlock;
-
 
     private bool doorTriggered;
     void Start()
