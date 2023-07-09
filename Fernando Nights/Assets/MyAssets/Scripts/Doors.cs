@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class Doors : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private SpriteRenderer myRenderer;
+    public bool isClosed;
+    [SerializeField]
+    private IntSCOB keys;
     void Start()
     {
         
     }
-
-    // Update is called once per frame
     void Update()
     {
         
