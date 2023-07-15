@@ -29,6 +29,9 @@ public class Soul : MonoBehaviour
             remnant.Value += 20;
             DieFunction();
             gameObject.GetComponent<Collider2D>().enabled = false;
+            CanvasManager canvasMan;
+            canvasMan = FindObjectOfType<CanvasManager>();
+            canvasMan.UpdateText();
         }
     }
 

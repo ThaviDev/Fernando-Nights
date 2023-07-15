@@ -8,12 +8,32 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1239376642951604923, guid: f3259b733984da8468d977e89a74bbff, type: 3}
+      propertyPath: ID
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1239376642951604923, guid: f3259b733984da8468d977e89a74bbff, type: 3}
       propertyPath: type
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1239376642951604923, guid: f3259b733984da8468d977e89a74bbff, type: 3}
       propertyPath: canAnimate
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1239376642951604923, guid: f3259b733984da8468d977e89a74bbff, type: 3}
+      propertyPath: waitTimeOG
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1239376642951604923, guid: f3259b733984da8468d977e89a74bbff, type: 3}
+      propertyPath: foxyPatience
+      value: 
+      objectReference: {fileID: 11400000, guid: bbbcc3009a1355c49998fcf3bb209646, type: 2}
+    - target: {fileID: 1239376642951604923, guid: f3259b733984da8468d977e89a74bbff, type: 3}
+      propertyPath: movementSpeedOG
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1239376642951604923, guid: f3259b733984da8468d977e89a74bbff, type: 3}
+      propertyPath: remnantRequired
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 1239376642951604923, guid: f3259b733984da8468d977e89a74bbff, type: 3}
       propertyPath: positions.Array.size
@@ -65,7 +85,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1239376642951605057, guid: f3259b733984da8468d977e89a74bbff, type: 3}
       propertyPath: m_Name
-      value: Foxy Variant
+      value: Foxy
+      objectReference: {fileID: 0}
+    - target: {fileID: 1239376642951605058, guid: f3259b733984da8468d977e89a74bbff, type: 3}
+      propertyPath: slowdownDistance
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1239376642951605058, guid: f3259b733984da8468d977e89a74bbff, type: 3}
+      propertyPath: endReachedDistance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1239376642951605058, guid: f3259b733984da8468d977e89a74bbff, type: 3}
+      propertyPath: pickNextWaypointDist
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 1239376644010458061, guid: f3259b733984da8468d977e89a74bbff, type: 3}
       propertyPath: m_Sprite

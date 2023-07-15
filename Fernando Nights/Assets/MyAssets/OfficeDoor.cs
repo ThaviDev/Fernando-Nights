@@ -9,14 +9,23 @@ public class OfficeDoor : MonoBehaviour
     [SerializeField]
     private Animator anim;
     [SerializeField]
+    private FloatSCOB Batery;
+
+    private void Start()
+    {
+        Batery.Value = 100;
+    }
+
     public bool isClosedOrOpen; // Conrolled by 'SecurityGuard'
     void Update()
     {
-        if (isClosedOrOpen)
+        if (isClosedOrOpen && Batery.Value > 0)
         {
             anim.SetBool("IsClosedOrOpen", isClosedOrOpen);
             myCollider.enabled = true;
-        } else if (!isClosedOrOpen)
+            Batery.Value = Batery.Value - Time.deltaTime/50;
+        }
+        else if (!isClosedOrOpen || Batery.Value <= 0)
         {
             anim.SetBool("IsClosedOrOpen", isClosedOrOpen);
             myCollider.enabled = false;

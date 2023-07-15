@@ -8,6 +8,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1239376642951604923, guid: f3259b733984da8468d977e89a74bbff, type: 3}
+      propertyPath: ID
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1239376642951604923, guid: f3259b733984da8468d977e89a74bbff, type: 3}
       propertyPath: type
       value: 3
       objectReference: {fileID: 0}
@@ -65,7 +69,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1239376642951605057, guid: f3259b733984da8468d977e89a74bbff, type: 3}
       propertyPath: m_Name
-      value: Shadow Bonnie
+      value: Shadow Bonnie Variant
       objectReference: {fileID: 0}
     - target: {fileID: 1239376644010458061, guid: f3259b733984da8468d977e89a74bbff, type: 3}
       propertyPath: m_Sprite

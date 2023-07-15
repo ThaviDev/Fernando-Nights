@@ -176,12 +176,17 @@ MonoBehaviour:
   positions: []
   waitTimeOG: 5
   movementSpeedOG: 2
+  remnantRequired: 0
   canAnimate: 0
   remnant: {fileID: 11400000, guid: 57f75cfd87cc7514d82dc68b3fff8767, type: 2}
   myAIPath: {fileID: 1239376642951605058}
   myAIDestinationSetter: {fileID: 1239376642951605059}
   sprite: {fileID: 1239376644010458061}
   anim: {fileID: 1239376644010458066}
+  myCol: {fileID: 0}
+  myRB: {fileID: 0}
+  charsInRight: {fileID: 11400000, guid: cc62098a684fa9d40b2ddec99f9f583c, type: 2}
+  charsInLeft: {fileID: 11400000, guid: 68da2394b7665cf42a2da7ce9eea7589, type: 2}
 --- !u!1 &1239376644010458064
 GameObject:
   m_ObjectHideFlags: 0

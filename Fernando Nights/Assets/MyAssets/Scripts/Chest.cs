@@ -17,10 +17,6 @@ public class Chest : MonoBehaviour
     {
         myRenderer = this.gameObject.transform.Find("Chest Visual").gameObject.GetComponent<SpriteRenderer>();
     }
-    void Update()
-    {
-        
-    }
     private void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.tag == "Player" && isOpen == false)
@@ -29,6 +25,10 @@ public class Chest : MonoBehaviour
             remnant.Value += remnantAmount;
             keys.Value += 1;
             isOpen = true;
+            // Actualizar el texto correspondiente
+            CanvasManager canvasMan;
+            canvasMan = FindObjectOfType<CanvasManager>();
+            canvasMan.UpdateText();
         }
     }
 }

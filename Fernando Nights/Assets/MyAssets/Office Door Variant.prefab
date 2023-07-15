@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 223047128721932416, guid: ac75dc257592d764fb0dc328ed3793c1, type: 3}
       propertyPath: m_Name
-      value: Office Door
+      value: Office Door Left
       objectReference: {fileID: 0}
     - target: {fileID: 223047128721932416, guid: ac75dc257592d764fb0dc328ed3793c1, type: 3}
       propertyPath: m_TagString
@@ -25,7 +25,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 223047128721932423, guid: ac75dc257592d764fb0dc328ed3793c1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.1999998
+      value: -4.48
       objectReference: {fileID: 0}
     - target: {fileID: 223047128721932423, guid: ac75dc257592d764fb0dc328ed3793c1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -96,6 +96,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myCollider: {fileID: 5394506042635817000}
   anim: {fileID: 1794624659}
+  Batery: {fileID: 11400000, guid: 446e85540e3c1474d9fdd1d4a492b18b, type: 2}
   isClosedOrOpen: 0
 --- !u!1 &5648731385105879705 stripped
 GameObject:

@@ -14,6 +14,12 @@ public class PlayerMotor : MonoBehaviour
     private SpriteRenderer sprite;
     [SerializeField]
     private Rigidbody2D rb;
+    public bool canActivateFoxy;
+    public bool canActivatePuppet;
+    [SerializeField]
+    private float foxyDecreaseRate;
+    [SerializeField]
+    private float puppetDecreaseRate;
 
     [SerializeField]
     private IntSCOB remnantAmount;
@@ -21,17 +27,33 @@ public class PlayerMotor : MonoBehaviour
     private IntSCOB keysAmount;
 
     [SerializeField]
+    FloatSCOB foxyPatience;
+    [SerializeField]
+    FloatSCOB musicBox;
+
+    [SerializeField]
     private GameObject triggerInput;
 
+    [SerializeField]
+    IntSCOB charsInRight;
+    [SerializeField]
+    IntSCOB charsInLeft;
+
+    Vector3 myInitialPos;
 
     void Start()
     {
+        myInitialPos = this.gameObject.transform.position;
+        print(myInitialPos);
         presentSpeed = movementSpeedOG;
         remnantAmount.Value = 0;
         keysAmount.Value = 0;
         anim = this.gameObject.transform.Find("Player visual").gameObject.GetComponent<Animator>();
         sprite = this.gameObject.transform.Find("Player visual").gameObject.GetComponent<SpriteRenderer>();
         triggerInput = this.gameObject.transform.Find("Trigger Input").gameObject;
+
+        foxyPatience.Value = 100f;
+        musicBox.Value = 100f;
     }
 
     private void Update()
@@ -41,6 +63,17 @@ public class PlayerMotor : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.Space)){
             triggerInput.SetActive(false);
+        }
+
+        if (canActivateFoxy)
+        {
+            if (foxyPatience.Value > 0)
+                foxyPatience.Value = foxyPatience.Value - Time.deltaTime * foxyDecreaseRate;
+        }
+        if (canActivatePuppet)
+        {
+            if (musicBox.Value > 0)
+                musicBox.Value = musicBox.Value - Time.deltaTime * puppetDecreaseRate;
         }
     }
 
@@ -77,5 +110,23 @@ public class PlayerMotor : MonoBehaviour
     public void TriggerSpeed(int speedDivider)
     {
         presentSpeed = movementSpeedOG / speedDivider;
+    }
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "OfficeDoor")
+        {
+            transform.position = myInitialPos;
+            TriggerSpeed(1);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.tag == "Guard")
+        {
+            CanvasManager canvas = FindObjectOfType<CanvasManager>();
+            canvas.WinGame();
+        }
     }
 }
