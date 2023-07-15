@@ -51,10 +51,10 @@ public class SecurityGuard : MonoBehaviour
         zoneRight.charAmount.Value = 0;
         zoneLeft.charAmount.Value = 0;
 
-        puppet25P = false;
-        puppet50P = false;
-        foxy25P = false;
-        foxy50P = false;
+        puppet25P = true;
+        puppet50P = true;
+        foxy25P = true;
+        foxy50P = true;
     }
     void Update()
     {
@@ -87,13 +87,57 @@ public class SecurityGuard : MonoBehaviour
             DetectedSomething(9); // Golden Freddy Aparece
             phantomIsInOffice[2] = false;
         }
-        if (!foxy25P && !foxy50P)
+        if (type2Bar[1].Value < 25)
         {
-            CheckFoxyBar();
+            CheckFoxyBar25();
+            foxy25P = false;
+        } else if (type2Bar[1].Value < 50)
+        {
+            CheckFoxyBar50();
+            foxy50P = false;
         }
-        if (!puppet25P && !puppet50P)
+        if (type2Bar[0].Value < 25)
         {
-            CheckPuppetBar();
+            CheckPuppetBar25();
+            puppet25P = false;
+        }
+        else if (type2Bar[0].Value < 50)
+        {
+            CheckPuppetBar50();
+            puppet50P = false;
+        }
+    }
+
+    void CheckFoxyBar25()
+    {
+        if (foxy25P)
+        {
+            // Eliminar la desicion de subir la barra en 50, basicamente la reemplaza
+            choices.RemoveAll(AIChoice => AIChoice.ID == 3);
+            DetectedSomething(5);
+        }
+    }
+    void CheckFoxyBar50()
+    {
+        if (foxy50P)
+        {
+            DetectedSomething(3);
+        }
+    }
+    void CheckPuppetBar25()
+    {
+        if (puppet25P)
+        {
+            // Eliminar la desicion de subir la barra en 50, basicamente la reemplaza
+            choices.RemoveAll(AIChoice => AIChoice.ID == 4);
+            DetectedSomething(6);
+        }
+    }
+    void CheckPuppetBar50()
+    {
+        if (puppet50P)
+        {
+            DetectedSomething(4);
         }
     }
 
@@ -208,18 +252,22 @@ public class SecurityGuard : MonoBehaviour
                 break;
             case 3: print("Barra Foxy esta 50% de gastado: Hora de hacerlo");
                 type2Bar[1].Value += 50;
+                foxy25P = true;
                 foxy50P = true;
                 break;
             case 4: print("Barra Puppet esta 50% de gastado: Hora de hacerlo");
                 type2Bar[0].Value += 50;
+                puppet25P = true;
                 puppet50P = true;
                 break;
             case 5: print("Barra Foxy esta 25% de gastado: Hora de hacerlo");
                 type2Bar[1].Value += 75;
+                foxy50P = true;
                 foxy25P = true;
                 break;
             case 6: print("Barra Puppet esta 25% de gastado: Hora de hacerlo");
                 type2Bar[0].Value += 75;
+                puppet50P = true;
                 puppet25P = true;
                 break;
             case 7: print("Shadow Freddy Aparecio: Hora de hacerlo");

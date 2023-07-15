@@ -10,6 +10,8 @@ public class Doors : MonoBehaviour
     public bool isClosed;
     [SerializeField]
     private IntSCOB keys;
+    [SerializeField]
+    private int remnantRequired;
     private float isOpen;
 
     [SerializeField]

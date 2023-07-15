@@ -75,6 +75,14 @@ public class PlayerMotor : MonoBehaviour
             if (musicBox.Value > 0)
                 musicBox.Value = musicBox.Value - Time.deltaTime * puppetDecreaseRate;
         }
+        if (musicBox.Value > 100)
+        {
+            musicBox.Value = 100;
+        }
+        if (foxyPatience.Value > 100)
+        {
+            foxyPatience.Value = 100;
+        }
     }
 
     void FixedUpdate()
