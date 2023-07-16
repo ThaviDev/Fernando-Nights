@@ -57,7 +57,7 @@ public class CanvasManager : MonoBehaviour
 
     void Update()
     {
-        timeLeft = timeLeft - Time.deltaTime;
+        timeLeft = timeLeft - Time.deltaTime / 3;
         if (Input.GetKeyDown(KeyCode.Escape)){
             pauseObj.SetActive(true);
             Time.timeScale = 0;
