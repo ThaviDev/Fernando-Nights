@@ -21,6 +21,8 @@ public class SecurityGuard : MonoBehaviour
     public Character[] phantomChar = new Character[3];
     [SerializeField] private FloatSCOB[] type2Bar = new FloatSCOB[2]; // (Probablemente seria mejor utilizar un SCOB aqui)
     public FloatSCOB batery;
+    private string guardInformation;
+    public CanvasManager canvasManager;
 
     public float stunTime;
     public float openRightDoorTime;
@@ -58,7 +60,8 @@ public class SecurityGuard : MonoBehaviour
     }
     void Update()
     {
-
+        if (stunTime > 0)
+            stunTime = stunTime - Time.deltaTime;
         if (stunTime <= 0) {
             DetectionFunction();
         }
@@ -168,43 +171,6 @@ public class SecurityGuard : MonoBehaviour
         // Igualar los valores al final
         charactersOnLeft = zoneLeft.charAmount.Value;
     }
-    void CheckPuppetBar()
-    {
-        if (type2Bar[0].Value < 25 && puppet25P == false)
-        {
-            puppet25P = true;
-        } else if (type2Bar[0].Value < 50 && puppet50P == false)
-        {
-            puppet50P = true;
-        }
-        if (puppet25P)
-        {
-            //puppet25P = false;
-            // Eliminar la desicion de subir la barra en 50, basicamente la reemplaza
-            choices.RemoveAll(AIChoice => AIChoice.ID == 4);
-            DetectedSomething(6);
-        }
-        if (puppet50P)
-        {
-            //puppet50P = false;
-            DetectedSomething(4);
-        }
-    }
-    void CheckFoxyBar()
-    {
-        if (type2Bar[1].Value < 25 && foxy25P == false)
-        {
-            foxy25P = true;
-            DetectedSomething(3);
-        }
-        else if (type2Bar[1].Value < 50 && foxy50P == false)
-        {
-            foxy50P = true;
-            // Eliminar la desicion de subir la barra en 50, basicamente la reemplaza
-            choices.RemoveAll(AIChoice => AIChoice.ID == 3);
-            DetectedSomething(5);
-        }
-    }
 
     void workTimeDelay()
     {
@@ -245,47 +211,60 @@ public class SecurityGuard : MonoBehaviour
         switch (choice.ID)
         {
             case 1: print("Alguien esta a mi izquierda: Hora de hacerlo");
+                guardInformation = "closed the left door";
                 doorRight.isClosedOrOpen = true;
                 break;
             case 2: print("Alguien esta a mi derecha: Hora de hacerlo");
+                guardInformation = "closed the right door";
                 doorLeft.isClosedOrOpen = true;
                 break;
             case 3: print("Barra Foxy esta 50% de gastado: Hora de hacerlo");
+                guardInformation = "looked at Papu :V";
                 type2Bar[1].Value += 50;
                 foxy25P = true;
                 foxy50P = true;
                 break;
             case 4: print("Barra Puppet esta 50% de gastado: Hora de hacerlo");
+                guardInformation = "has wind up the music box";
                 type2Bar[0].Value += 50;
                 puppet25P = true;
                 puppet50P = true;
                 break;
             case 5: print("Barra Foxy esta 25% de gastado: Hora de hacerlo");
+                guardInformation = "looked at Papu :V";
                 type2Bar[1].Value += 75;
                 foxy50P = true;
                 foxy25P = true;
                 break;
             case 6: print("Barra Puppet esta 25% de gastado: Hora de hacerlo");
+                guardInformation = "has wind up the music box";
                 type2Bar[0].Value += 75;
                 puppet50P = true;
                 puppet25P = true;
                 break;
             case 7: print("Shadow Freddy Aparecio: Hora de hacerlo");
+                guardInformation = "has banished Purple guy";
                 phantomChar[0].presentPosition = 0;
                 break;
             case 8: print("Shadow Bonnie Aparecio: Hora de hacerlo");
+                guardInformation = "has banished hdspm";
                 phantomChar[1].presentPosition = 0;
                 break;
             case 9: print("Golden Freddy Aparecio: Hora de hacerlo");
+                guardInformation = "has banished Copper Fernando";
                 phantomChar[2].presentPosition = 0;
                 break;
             case 10: print("No hay nadie a mi derecha, debo abrir la puerda para no gastar energia: Hora de hacerlo");
+                guardInformation = "opened the right door";
                 doorRight.isClosedOrOpen = false;
                 break;
             case 11: print("No hay nadie a mi izquierda, debo abrir la puerda para no gastar energia: Hora de hacerlo");
+                guardInformation = "opened the left door";
                 doorLeft.isClosedOrOpen = false;
                 break;
         }
+        canvasManager.guardInfoString = guardInformation;
+        canvasManager.UpdateText();
         choices.Remove(choice);
         isBussy = false;
     }
@@ -372,5 +351,23 @@ public class SecurityGuard : MonoBehaviour
                 choices.Add(openDoorLeft);
                 break;
         }
+    }
+
+    public void ForceBothDoors()
+    {
+        doorLeft.isForced = true;
+        doorLeft.forcedTime = 6;
+        doorRight.isForced = true;
+        doorRight.forcedTime = 6;
+    }
+    public void StunnedInput()
+    {
+        stunTime += 4;
+    }
+
+    public void UpdateTextAttacked(string info)
+    {
+        canvasManager.guardInfoString = info;
+        canvasManager.UpdateText();
     }
 }

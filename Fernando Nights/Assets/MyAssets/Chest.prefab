@@ -157,5 +157,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   remnant: {fileID: 11400000, guid: 57f75cfd87cc7514d82dc68b3fff8767, type: 2}
-  keys: {fileID: 11400000, guid: 8d532988dbc97c940bfc4f6826a27185, type: 2}
-  remnantAmount: 20
+  remnantAmount: 120

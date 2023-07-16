@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using TMPro;
+using UnityEngine.UI;
 
 public class Character : MonoBehaviour
 {
     [SerializeField]
     private int ID; // Identificacion del personaje
+    [SerializeField] private string myName; // Nombre del personaje
     public int type; // 1 : Door Knocker, 2 : Patience, 3 : Ghost
     [SerializeField]
     private Transform[] positions; // Todas las posiciones que el personaje utiliza para moverse
@@ -54,6 +57,11 @@ public class Character : MonoBehaviour
     [SerializeField]
     FloatSCOB musicBox;
 
+    public TextMeshProUGUI myTextTMP;
+    [SerializeField] private int[] remnantsToLevelUp = new int[4] {40, 80, 160, 240};
+    [SerializeField] private int currentLevel = 0;
+    [SerializeField] private int maxLevel = 4;
+
     void Start()
     {
         // Mi posicion inicial es en la que spawneo en el juego
@@ -65,16 +73,25 @@ public class Character : MonoBehaviour
         // La velocidad se establece como normal al inicio
         presentSpeed = movementSpeedOG;
         // La velocidad se conecta con la velocidad del pathfinder
-        myAIPath.maxSpeed = presentSpeed;
     }
 
     void Update()
     {
+        myAIPath.maxSpeed = presentSpeed;
         if (type == 2 && presentPosition > 1)
             presentPosition = 1;
         if (isActive)
         {
+            if (!(currentLevel >= maxLevel)) {
+                myTextTMP.text = ("" + remnantsToLevelUp[currentLevel]);
+            }
+            else {
+                myTextTMP.text = ("");
+            }
             ActiveAnimatronic();
+        } else
+        {
+            myTextTMP.text = ("" + remnantRequired);
         }
     }
 
@@ -100,6 +117,106 @@ public class Character : MonoBehaviour
         }
     }
 
+    public void LevelUp()
+    {
+        switch (currentLevel)
+        {
+            case 1:
+                presentSpeed = movementSpeedOG += 0.2f;
+                timeDecreaseRate = 1.1f;
+                if (type == 1)
+                {
+                    myAIPath.pickNextWaypointDist = 0.175f;
+                    myAIPath.slowdownDistance = 0.15f;
+                    myAIPath.endReachedDistance = 0.25f;
+                }
+                if (type == 2)
+                {
+                    if (ID == 2)
+                    {
+                        PlayerMotor player = FindObjectOfType<PlayerMotor>();
+                        player.foxyDecreaseRate += 0.1f;
+                    }
+                    if (ID == 7)
+                    {
+                        PlayerMotor player = FindObjectOfType<PlayerMotor>();
+                        player.puppetDecreaseRate += 0.1f;
+                    }
+                }
+                break;
+            case 2:
+                presentSpeed = movementSpeedOG += 0.4f;
+                timeDecreaseRate = 1.2f;
+                if (type == 1)
+                {
+                    myAIPath.pickNextWaypointDist = 0.35f;
+                    myAIPath.slowdownDistance = 0.2f;
+                    myAIPath.endReachedDistance = 0.50f;
+                }
+                if (type == 2)
+                {
+                    if (ID == 2)
+                    {
+                        PlayerMotor player = FindObjectOfType<PlayerMotor>();
+                        player.foxyDecreaseRate += 0.1f;
+                    }
+                    if (ID == 7)
+                    {
+                        PlayerMotor player = FindObjectOfType<PlayerMotor>();
+                        player.puppetDecreaseRate += 0.1f;
+                    }
+                }
+                break;
+            case 3:
+                presentSpeed = movementSpeedOG += 0.6f;
+                timeDecreaseRate = 1.4f;
+                if (type == 1)
+                {
+                    myAIPath.pickNextWaypointDist = 0.525f;
+                    myAIPath.slowdownDistance = 0.25f;
+                    myAIPath.endReachedDistance = 0.75f;
+                }
+                if (type == 2)
+                {
+                    if (ID == 2)
+                    {
+                        PlayerMotor player = FindObjectOfType<PlayerMotor>();
+                        player.foxyDecreaseRate += 0.1f;
+                    }
+                    if (ID == 7)
+                    {
+                        PlayerMotor player = FindObjectOfType<PlayerMotor>();
+                        player.puppetDecreaseRate += 0.1f;
+                    }
+                }
+                break;
+            case 4:
+                presentSpeed = movementSpeedOG += 1.2f;
+                timeDecreaseRate = 1.8f;
+                if (type == 1)
+                {
+                    myAIPath.pickNextWaypointDist = 0.7f;
+                    myAIPath.slowdownDistance = 0.3f;
+                    myAIPath.endReachedDistance = 1f;
+
+                }
+                                if (type == 2)
+                {
+                    if (ID == 2)
+                    {
+                        PlayerMotor player = FindObjectOfType<PlayerMotor>();
+                        player.foxyDecreaseRate += 0.1f;
+                    }
+                    if (ID == 7)
+                    {
+                        PlayerMotor player = FindObjectOfType<PlayerMotor>();
+                        player.puppetDecreaseRate += 0.1f;
+                    }
+                }
+                break;
+        }
+    }
+
     // Animatronico tipo 1 es ir a la puerta e intentar entrar, ir de posicion a posicion, aturdir al guardia si se llega
     void AnimatronicTypeOne() {
         GeneralMovement();
@@ -115,6 +232,8 @@ public class Character : MonoBehaviour
             waitTimePos = musicBox.Value;
         }
     }
+    // it increases the rate at witch the bar empties 
+    float timeDecreaseRate = 1f;
     // Animatronico tipo 3 es poder teletransportarse a la oficina y robar energia hasta que el guardia te saque
     void AnimatronicTypeThree() {
         float distance = Vector3.Distance(transform.position, positions[presentPosition].position);
@@ -125,7 +244,7 @@ public class Character : MonoBehaviour
         if (distance <= 1 && presentPosition == 1)
         {
             print("Estoy en la oficina yay!!");
-            secGuard.batery.Value = secGuard.batery.Value - Time.deltaTime / 50;
+            secGuard.batery.Value = secGuard.batery.Value - (Time.deltaTime * timeDecreaseRate) / 10;
             if (!isInPos)
             {
                 if (ID == 5)
@@ -145,7 +264,6 @@ public class Character : MonoBehaviour
 
         }
     }
-
     // Logica que se encarga del movimiento de Pathfinder y animacion.
     void GeneralMovement() {
         if (myAIPath.desiredVelocity.x >= 0.01f)
@@ -171,8 +289,6 @@ public class Character : MonoBehaviour
 
     // Determines if the destiny was reached, if it was, start waiting to move
     bool destinyReached = false;
-    // (Only for type 2) it increases the rate at witch the bar empties 
-    float timeDecreaseRate = 1f;
     // Failsafe para que no piense que su posicion llegada fue la anterior
     float failsafeTime;
     // Logica que se encarga de el ir de una posicion del escenario a otra
@@ -202,13 +318,23 @@ public class Character : MonoBehaviour
             failsafeTime = failsafeTime - Time.deltaTime;
         }
     }
-    public void OfficeDoorHit()
-    {
-
-    }
     public void TriggerSpeed(int speedDivider)
     {
-        presentSpeed = movementSpeedOG / speedDivider;
+        if (currentLevel == 0) {
+            presentSpeed = movementSpeedOG / speedDivider;
+        } else if (currentLevel == 1)
+        {
+            presentSpeed = (movementSpeedOG + 0.2f) / speedDivider;
+        } else if (currentLevel == 2)
+        {
+            presentSpeed = (movementSpeedOG + 0.4f) / speedDivider;
+        } else if (currentLevel == 3)
+        {
+            presentSpeed = (movementSpeedOG + 0.6f) / speedDivider;
+        } else if (currentLevel == 4)
+        {
+            presentSpeed = (movementSpeedOG + 1.2f) / speedDivider;
+        }
         myAIPath.maxSpeed = presentSpeed;
     }
     private void OnTriggerEnter2D(Collider2D col)
@@ -239,6 +365,34 @@ public class Character : MonoBehaviour
         } else if (col.tag == "TriggerInput" && isActive)
         {
             // Logica de subir de nivel
+            if (!(currentLevel >= maxLevel) && remnant.Value >= remnantsToLevelUp[currentLevel])
+            {
+                print("Voy a subir de nivel porque interactuaron conmigo");
+                remnant.Value -= remnantsToLevelUp[currentLevel];
+                currentLevel++;
+                LevelUp();
+            }
+        }
+        if (col.tag == "Guard")
+        {
+            transform.position = myInitialPos;
+            TriggerSpeed(1);
+            presentPosition = 0;
+            // Si es tipo 1 Stunear al guardia y volver a la posicion original
+            if (type == 1)
+            {
+                //col.gameObject.GetComponent<SecurityGuard>().StunnedInput();
+                secGuard.StunnedInput();
+                secGuard.UpdateTextAttacked("has been stunned by " + myName);
+            }
+            // Si es tipo 2 entonces forzar ambas puertas
+            if (type == 2)
+            {
+                // Forzar ambas puertas para que se abran
+                //col.gameObject.GetComponent<SecurityGuard>().ForceBothDoors();
+                secGuard.ForceBothDoors();
+                secGuard.UpdateTextAttacked("is vulnerable " + myName + " has forced both doors");
+            }
         }
     }
 
@@ -249,6 +403,17 @@ public class Character : MonoBehaviour
             transform.position = myInitialPos;
             TriggerSpeed(1);
             presentPosition = 0;
+            if (type == 2)
+            {
+                // Forzar la puerta para que se abra
+                OfficeDoor ofDoor = col.gameObject.GetComponent<OfficeDoor>();
+                ofDoor.isForced = true;
+                ofDoor.forcedTime = 6;
+                if (ID == 2)
+                secGuard.UpdateTextAttacked("is vulnerable " + myName + " has forced the left door");
+                if (ID == 7)
+                secGuard.UpdateTextAttacked("is vulnerable " + myName + " has forced the right door");
+            }
             /*
             bool dir = col.gameObject.GetComponent<OfficeDoor>().isRightOrLeft;
             if (dir)

@@ -8,8 +8,6 @@ public class Chest : MonoBehaviour
     [SerializeField]
     private IntSCOB remnant;
     [SerializeField]
-    private IntSCOB keys;
-    [SerializeField]
     private int remnantAmount = 20;
     private bool isOpen;
 
@@ -23,7 +21,6 @@ public class Chest : MonoBehaviour
         {
             myRenderer.sprite = Resources.Load<Sprite>("ChestOpen");
             remnant.Value += remnantAmount;
-            keys.Value += 1;
             isOpen = true;
             // Actualizar el texto correspondiente
             CanvasManager canvasMan;

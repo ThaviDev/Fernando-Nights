@@ -16,16 +16,12 @@ public class PlayerMotor : MonoBehaviour
     private Rigidbody2D rb;
     public bool canActivateFoxy;
     public bool canActivatePuppet;
-    [SerializeField]
-    private float foxyDecreaseRate;
-    [SerializeField]
-    private float puppetDecreaseRate;
+
+    public float foxyDecreaseRate;
+    public float puppetDecreaseRate;
 
     [SerializeField]
     private IntSCOB remnantAmount;
-    [SerializeField]
-    private IntSCOB keysAmount;
-
     [SerializeField]
     FloatSCOB foxyPatience;
     [SerializeField]
@@ -47,7 +43,6 @@ public class PlayerMotor : MonoBehaviour
         print(myInitialPos);
         presentSpeed = movementSpeedOG;
         remnantAmount.Value = 0;
-        keysAmount.Value = 0;
         anim = this.gameObject.transform.Find("Player visual").gameObject.GetComponent<Animator>();
         sprite = this.gameObject.transform.Find("Player visual").gameObject.GetComponent<SpriteRenderer>();
         triggerInput = this.gameObject.transform.Find("Trigger Input").gameObject;

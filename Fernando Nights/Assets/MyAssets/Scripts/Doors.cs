@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class Doors : MonoBehaviour
 {
@@ -9,17 +11,20 @@ public class Doors : MonoBehaviour
     private Collider2D myCollider;
     public bool isClosed;
     [SerializeField]
-    private IntSCOB keys;
+    private int remnantRequired = 80;
     [SerializeField]
-    private int remnantRequired;
+    private IntSCOB remnant;
     private float isOpen;
 
     [SerializeField]
     private int IDForAreaUnlock;
 
     private bool doorTriggered;
+
+    public TextMeshProUGUI myTextTMP;
     void Start()
     {
+        //myTextTMP = transform.Find("CanvasWorld").transform.Find("Text").GetComponent<TextMeshPro>().text;
         // Encontrar el sprite renderer de la puerta
         myRenderer = this.gameObject.transform.Find("Door Visual").gameObject.GetComponent<SpriteRenderer>();
         //myCollider = GetComponent<Collider>();
@@ -28,8 +33,12 @@ public class Doors : MonoBehaviour
     {
         if (isClosed)
         {
+            myTextTMP.text = ("" + remnantRequired);
+            //myTextTMP.UpdateText("" + remnantRequired);
             myCollider.enabled = true;
         } else {
+            myTextTMP.text = ("");
+            //myTextTMP.UpdateText("");
             myCollider.enabled = false;
         }
 
@@ -49,16 +58,17 @@ public class Doors : MonoBehaviour
     {
         if (col.tag == "TriggerInput" && isClosed)
         {
-            if (keys.Value > 0)
+            if (remnant.Value >= remnantRequired)
             {
                 print("Se abre la puerta");
-                keys.Value--;
+                remnant.Value -= remnantRequired;
                 isClosed = false;
                 FindObjectOfType<UnlockAreas>().UnlockArea(IDForAreaUnlock);
+                CanvasManager canvasMan = FindObjectOfType<CanvasManager>();
+                canvasMan.UpdateText();
             } else
             {
-                // Mandarle informacion a UI que no se puede porque no hay llaves, puede ser por SCOB o por EVENT
-                print("No se puede abrir porque no hay llaves");
+                print("No hay suficiente remnant");
             }
         }
         if (col.tag == "Player" || col.tag == "Character")

@@ -26,7 +26,7 @@ public class Soul : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            remnant.Value += 20;
+            remnant.Value += 25;
             DieFunction();
             gameObject.GetComponent<Collider2D>().enabled = false;
             CanvasManager canvasMan;
